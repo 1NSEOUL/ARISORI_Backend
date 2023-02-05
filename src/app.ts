@@ -28,14 +28,14 @@ app.use(cookieParser())
 import controller from './controller'
 import { HttpError } from './global/exception/exception'
 import { GlobalResponseDTO } from './global/res/DTO/GlobalResponseDTO'
-import { GlobalResponseService } from './global/res/GlobalService'
+import { GlobalService } from './global/res/GlobalService'
 
 app.use('/', controller)
 
 app.use(((err: HttpError, req: Request, res: Response, next: NextFunction) => {
 	const { httpCode, message } = err
 	const response = new GlobalResponseDTO(httpCode ?? 500, message ?? 'Internal Server Error', null)
-	GlobalResponseService(res as Response, response)
+	GlobalService(res as Response, response)
 }) as ErrorRequestHandler)
 
 app.listen(8085)

@@ -21,7 +21,7 @@ const DatabaseStart = () => {
 	AppDataSource.initialize()
 		.then(() => {
 			const user = new User()
-			user.id = -1
+			user.id = 0
 			user.name = '익명'
 			AppDataSource.manager.save(user)
 		})

@@ -1,8 +1,8 @@
-import { Chat } from '@src/database/entity/Chat'
-import { ChatRepository } from '@src/database/repository/Repository'
-import { InternalServerException, UnAuthorizedException } from '@src/global/exception/exception'
-import { GlobalResponseDTO } from '@src/global/res/DTO/GlobalResponseDTO'
-import { GlobalService } from '@src/global/res/GlobalService'
+import { Chat } from '../../database/entity/Chat'
+import { ChatRepository } from '../../database/repository/Repository'
+import { InternalServerException, UnAuthorizedException } from '../../global/exception/exception'
+import { GlobalResponseDTO } from '../../global/res/DTO/GlobalResponseDTO'
+import { GlobalService } from '../../global/res/GlobalService'
 import { NextFunction, Request, Response } from 'express'
 import { isLogin } from '../auth/middleware/middleware'
 
@@ -18,7 +18,7 @@ const sendChat = async (req: Request, res: Response, next: NextFunction) => {
 
 		chat.user = User!
 		await ChatRepository.save(chat)
-		const DTO = new GlobalResponseDTO(200, 'success', chat)
+		const DTO = new GlobalResponseDTO(200, 'send chatting success', chat)
 		GlobalService(res, DTO)
 	} catch (e) {
 		console.log(e)

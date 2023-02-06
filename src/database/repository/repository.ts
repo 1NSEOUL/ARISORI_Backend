@@ -1,6 +1,6 @@
-import { AppDataSource } from '@database/Database'
-import { Chat } from '@database/entity/Chat'
-import { User } from '@database/entity/User'
+import { AppDataSource } from '../Database'
+import { Chat } from '../entity/Chat'
+import { User } from '../entity/User'
 
 const ChatRepository = AppDataSource.getRepository(Chat)
 const UserRepository = AppDataSource.getRepository(User)

@@ -1,18 +1,19 @@
 import { DataSource } from 'typeorm'
-import { User } from '@database/entity/User'
-import { Chat } from '@database/entity/chat'
+import { User } from './entity/User'
 import process from 'process'
 import dotenv from 'dotenv'
 dotenv.config()
 
+console.log(__dirname)
+
 const AppDataSource = new DataSource({
 	type: 'mysql',
-	host: 'localhost',
-	port: 8085,
+	host: '127.0.0.1',
+	port: 3306,
 	username: process.env.DATABASE_USERNAME,
 	password: process.env.DATABASE_PASSWORD,
 	database: process.env.DATABASE_DATABASE,
-	entities: [User, Chat],
+	entities: [__dirname + '/entity/*.ts'],
 	synchronize: true,
 	logging: ['info', 'error'],
 })

@@ -2,10 +2,18 @@ import dotenv from 'dotenv'
 import express, { ErrorRequestHandler, NextFunction, Request, Response } from 'express'
 import cookieParser from 'cookie-parser'
 import helmet from 'helmet'
+import cors from 'cors'
+import { DatabaseStart } from './database/Database'
+import controller from './controller'
+import { HttpError } from './global/exception/exception'
+import { GlobalResponseDTO } from './global/res/DTO/GlobalResponseDTO'
+import { GlobalService } from './global/res/GlobalService'
 
 dotenv.config()
 
 const app = express()
+
+DatabaseStart()
 
 app.use(
 	helmet({
@@ -24,13 +32,10 @@ app.use(helmet.referrerPolicy())
 app.use(helmet.xssFilter())
 
 app.use(cookieParser())
+app.use(cors())
+app.use(express.json())
 
-import controller from './controller'
-import { HttpError } from './global/exception/exception'
-import { GlobalResponseDTO } from './global/res/DTO/GlobalResponseDTO'
-import { GlobalService } from './global/res/GlobalService'
-
-app.use('/', controller)
+app.use('/api', controller)
 
 app.use(((err: HttpError, req: Request, res: Response, next: NextFunction) => {
 	const { httpCode, message } = err

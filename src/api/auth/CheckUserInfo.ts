@@ -1,6 +1,6 @@
-import { UnAuthorizedException } from '@src/global/exception/exception'
-import { GlobalResponseDTO } from '@src/global/res/DTO/GlobalResponseDTO'
-import { GlobalService } from '@src/global/res/GlobalService'
+import { UnAuthorizedException } from '../../global/exception/exception'
+import { GlobalResponseDTO } from '../../global/res/DTO/GlobalResponseDTO'
+import { GlobalService } from '../../global/res/GlobalService'
 import { NextFunction, Request, Response } from 'express'
 import { isLogin } from './middleware/middleware'
 

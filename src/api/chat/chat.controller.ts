@@ -1,6 +1,6 @@
 import express from 'express'
 const router = express.Router()
-import sendChat from '@src/api/chat/sendChat'
+import sendChat from '../../api/chat/sendChat'
 import getChat from './getChat'
 
 router.get('/', getChat)

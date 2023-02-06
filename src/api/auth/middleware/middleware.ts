@@ -1,5 +1,5 @@
 import jwt, { Secret } from 'jsonwebtoken'
-import { UserRepository } from '@database/repository/Repository'
+import { UserRepository } from '../../../database/repository/Repository'
 import dotenv from 'dotenv'
 
 dotenv.config()
